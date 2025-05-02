@@ -1,0 +1,112 @@
+@import "media-queriess";
+
+%align-center {
+  display: flex;
+  align-items: center;
+}
+// placeholder bunu bir yere extend etmediğin sürece çalışmaz.
+// mixin de kullanılabilir.
+
+.navbar {
+  background: $lime;
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 20px;
+  z-index: 10;
+  position: relative;
+
+
+  &__logo {
+  @extend %align-center;
+    color: $dark;
+    text-decoration: none;
+  }
+
+  &__bars {
+    display: none;
+
+    @include tablet {
+        display: flex;
+      opacity: 1;
+      color: $dark;
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 2rem;
+    }
+  }
+
+  &__menu {
+    @extend %align-center;
+    display: flex;
+    gap: 15px;
+
+    @include tablet {
+        display: none;
+    }
+
+    &--links {
+      text-decoration: none;
+      color: $dark;
+      transition: all 0.3s ease;
+      
+      &:hover {
+          color: $light;
+      }
+    }
+
+    #button {
+        padding: 10px 10px;
+        border: none;
+        outline: none;
+        border-radius: 4px;
+        background: $light;
+
+        &:hover {
+            background: $dark;
+        }
+    }
+  }
+
+  #close-button {
+    display: none;
+    @include tablet {
+        display: flex;
+        position: absolute;
+        top: 16px;
+        right: 20px;
+        font-size: 2rem;
+        color: $dark;
+        z-index: 2000;
+    }
+  }
+
+  .menu {
+    @include tablet {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    right: -250px;
+    width: 250px;
+    top: 0;
+    padding-top: 60px;
+    height: 100%;
+    transition: right 0.3s ease;
+    background: $lime;
+    z-index: 2000;
+
+    & > a {
+        text-align: left;
+    }
+    }
+  }
+
+  .menu.active {
+    @include tablet {
+        right: 0;
+    }
+    
+  }
+}
